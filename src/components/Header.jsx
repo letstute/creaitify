@@ -1,17 +1,112 @@
-import Button from "./Button";
-import Logo from "./Logo";
-import MainNav from "./MainNav";
-import { images } from "@/constants/images";
+"use client";
+import React, { useState, useEffect } from 'react';
+import { images } from '@/constants/images';
 
-export default function Header() {
+// SVG Call Icon Component
+const CallIcon = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+  </svg>
+);
+
+export default function HeaderComponent() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const scrollToSection = (id) => { // Special case for scrolling to top
+    if (id === 'home-section' || id === 'top') { // Special case for scrolling to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsMenuOpen(false);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setIsMenuOpen(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) { // md breakpoint in Tailwind
+        setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <header className="bg-primary-100 py-2 border-b border-zinc-200">
-      <div className="container flex justify-between items-center">
-        <Logo size={80} />
-        <MainNav />
-        <Button href="#" type="primary" image={images.buttonImage}>
-          Book a call
-        </Button>
+    <header className="bg-white shadow-md py-4 px-4 md:px-8 sticky top-0 z-[150] font-sans">
+      <div className="container mx-auto flex items-center justify-between">
+        <div className="flex items-center">
+          <img
+            src={images.logo} // Use the logo from constants
+            alt="Company Logo"
+            className="h-12 w-12 md:h-14 md:w-14 rounded-full mr-3 border-none" 
+          />
+          <span className="text-xl font-bold">
+            <span className="text-gray-800">cre</span>
+            <span className="text-blue-600">ai</span>
+            <span className="text-gray-800">tify</span>
+          </span>
+        </div>
+
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md p-2"
+            aria-label="Toggle navigation menu"
+          >
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {isMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              )}
+            </svg>
+          </button>
+        </div>
+
+        <nav className={`md:flex md:items-center ${isMenuOpen ? 'block absolute top-full left-0 w-full bg-white shadow-lg py-4 md:relative md:shadow-none md:py-0' : 'hidden'} md:space-x-6 lg:space-x-8`}>
+          <div className="mt-4 md:hidden px-4 pb-2">
+            <a
+              href="https://calendly.com/aniket-bhasin/letstute-introduction-call"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-lg"
+            >
+              Book a call
+            </a>
+          </div>
+        </nav>
+
+        <div className="hidden md:flex items-center">
+          <a
+            href="https://calendly.com/aniket-bhasin/letstute-introduction-call"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-full transition-colors duration-300 shadow-lg flex items-center text-sm"
+          > {/* Replaced img with CallIcon, adjusted size slightly */}
+            <CallIcon className="w-5 h-5 mr-2" /> {/* Replaced img with CallIcon, adjusted size slightly */}
+            Book a call
+          </a>
+        </div>
       </div>
     </header>
   );
