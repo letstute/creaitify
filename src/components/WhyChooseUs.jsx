@@ -8,41 +8,65 @@ const ReasonCard = ({
   description,
   imageSrc,
   index,
+  bgColor,
+  totalCards, // New prop: total number of cards
+  baseScale,  // New prop: the scale of the first card (index 0)
 }) => {
   const siteStickyHeaderHeight = 80; // <<<< ------ ADJUST THIS VALUE to your site's sticky header height in pixels
-  const titleBarHeight = 64; // Corresponds to h-16 in Tailwind (4rem = 64px)
-  const topOffset = siteStickyHeaderHeight + (index * titleBarHeight);
+  const partiallyVisibleHeight = 30; // Height of the card sliver that remains visible when "stuck"
+  const topOffset = siteStickyHeaderHeight + (index * partiallyVisibleHeight);
+
+  let scaleValue = 1.0;
+  if (totalCards > 1) {
+    // Scale progression: card 0 is baseScale, last card is 1.0
+    scaleValue = baseScale + (index / (totalCards - 1)) * (1.0 - baseScale);
+  }
+  // Ensure scale is not less than baseScale and not more than 1.0, though formula should handle this.
+  scaleValue = Math.min(1.0, Math.max(baseScale, scaleValue));
 
   return (
-    <div className={`sticky rounded-2xl mx-auto overflow-hidden border border-gray-300 bg-white mb-4 shadow-[10px_0_15px_-3px_rgba(147,197,253,0.5),_-10px_0_15px_-3px_rgba(147,197,253,0.5)]`}
+    <div
+      className={`sticky rounded-2xl mx-auto overflow-hidden border border-gray-300 ${bgColor} mb-4 shadow-xl flex flex-col md:flex-row`} // mb-4 creates space between scaled cards
+      // Replaced specific shadow with shadow-xl for a more general look with varied bg colors
+      // Added flex flex-col md:flex-row for layout change
       style={{
         top: `${topOffset}px`,
-        width: 'min(100%, 550px)',
+        width: 'min(100%, 950px)', // Increased card width
+        zIndex: index + 1, // Card 0 gets z-index 1, card 1 gets 2, etc.
+        transform: `scale(${scaleValue})`,
+        transformOrigin: 'center top',
       }}
     >
-      {/* Corrected title bar div */}
-      <div className={`h-16 flex items-center justify-center px-6 bg-gray-50 border-b border-gray-200`}>
-        <h3 className="text-xl md:text-2xl font-bold text-gray-800 truncate text-center" title={title}>{title}</h3>
-      </div> {/* This closes the title bar div */}
-
-      <div className={`p-6 md:p-8 flex flex-col items-center text-center`}>
-        <div className="w-full max-w-sm mb-6">
-          <img
-
-            src={imageSrc}
-            alt={title}
-            className="w-full h-60 object-cover rounded-lg shadow-md" // Fixed height for image, object-cover
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = `https://placehold.co/600x400/cccccc/333333?text=Image+Error`;
-            }}
-          />
+      {/* Left Content Area (Title & Description) - 60% width on md+ */}
+      <div className="w-full md:w-[60%] flex flex-col"> {/* Changed width to 60% */}
+        {/* Title Bar section (retains h-16 for sticky offset consistency) */}
+        <div className={`flex justify-start px-8 md:px-10 pt-5 md:pt-6 pb-2`}> {/* Increased top padding: pt-4->pt-5, md:pt-5->md:pt-6 */}
+          {/* Title aligned left */}
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-800 text-left" title={title}>{title}</h3> {/* Increased size, removed truncate */}
         </div>
-        <div className="w-full">
-          <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+
+        {/* Description section */}
+        <div className="pt-4 md:pt-4 px-8 md:px-10 pb-6 md:pb-8 flex-grow"> {/* Increased px */}
+          <p className="text-gray-700 leading-relaxed text-base md:text-lg text-left"> {/* Increased text size */}
             {description}
           </p>
         </div>
+      </div>
+
+      {/* Right Image Area - 40% width on md+ */}
+      {/* On mobile (flex-col), this div is full width. On md+ (flex-row), it's 35% width. */}
+      <div className="w-full md:w-[40%] flex items-center justify-center md:p-0 md:min-h-[380px]"> {/* Increased md:min-h */}
+        {/* md:p-0 makes image flush with card edges on desktop */}
+        <img
+          src={imageSrc}
+          alt={title}
+          className="w-full h-80 md:h-full object-cover" // Increased mobile height to h-80, md:h-full for desktop
+          onError={(e) => {
+            e.target.onerror = null;
+            // Adjusted placeholder size slightly
+            e.target.src = `https://placehold.co/400x300/cccccc/333333?text=Image+Error`;
+          }}
+        />
       </div>
     </div>
   );
@@ -76,6 +100,22 @@ export default function WhyChooseUs() {
     }
   ], []); // Empty dependency array means this runs once
 
+  const lightCardBackgrounds = useMemo(() => [
+    'bg-slate-100',
+    'bg-rose-100',
+    'bg-amber-100',
+    'bg-teal-100',
+    'bg-sky-100',
+    'bg-indigo-100',
+    'bg-pink-100',
+    'bg-lime-100',
+    'bg-violet-100',
+    'bg-emerald-100',
+    // Add more if you have more than 10 cards, or they will cycle
+  ], []);
+
+  const cardBaseScale = 0.85; // The smallest scale for the first card
+
   return (
     <section className="relative py-16 font-sans antialiased min-h-screen"
       style={{
@@ -90,12 +130,19 @@ export default function WhyChooseUs() {
         <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-12 md:mb-16 text-center drop-shadow-lg">
           Why choose us?
         </h2>
-        <div className="relative" style={{ paddingBottom: '100px' }}> {/* Reduced paddingBottom */}
+        {/*
+          The paddingBottom provides the necessary scroll space to ensure the content of the final sticky card
+          is fully visible before the user scrolls to the next section. It's calculated based on the card height.
+        */}
+        <div className="relative" style={{ paddingBottom: '290px' }}>
           {cardData.map((card, index) => (
             <ReasonCard
               key={card.id}
               {...card}
               index={index}
+              bgColor={lightCardBackgrounds[index % lightCardBackgrounds.length]} // Assign background color
+              totalCards={cardData.length}
+              baseScale={cardBaseScale}
             />
           ))}
         </div>
