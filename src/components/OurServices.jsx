@@ -38,9 +38,9 @@ const ServiceCard = ({ service, className = '' }) => {
   return (
     <div
       ref={cardRef}
-      className={`bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start text-left transition-transform duration-300 hover:scale-105 ${className}`}
+      className={`bg-black rounded-2xl shadow-xl p-6 flex flex-col items-start text-left transition-transform duration-300 hover:scale-105 ${className}`} // Changed background to black
     >
-      <div className="mb-4 w-full h-[232px] flex items-center justify-center bg-gray-200 rounded-[10px] overflow-hidden">
+      <div className="mb-4 w-full h-[232px] flex items-center justify-center bg-gray-700 rounded-[10px] overflow-hidden"> {/* Adjusted placeholder bg */}
         <img
           src={isVisible ? imageUrl : placeholderSrc}
           alt={service.title}
@@ -53,10 +53,10 @@ const ServiceCard = ({ service, className = '' }) => {
           }}
         />
       </div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-2">
+      <h3 className="text-xl font-semibold text-white mb-2"> {/* Changed text to white */}
         {service.title}
       </h3>
-      <p className="text-gray-600 text-sm leading-relaxed">
+      <p className="text-gray-300 text-sm leading-relaxed"> {/* Changed text to light gray */}
         {service.description}
       </p>
     </div>
@@ -65,55 +65,39 @@ const ServiceCard = ({ service, className = '' }) => {
 export default function OurServices() {
   const services = [
     {
-      title: "End-to-End Content Solutions",
-      description: "Complete content development from TOC to delivery.",
+      title: "Content Outsourcing",
+      description: "Comprehensive content outsourcing solutions tailored to your business needs, from creation to management.",
       imageSrc: images.EndtoEndImage,
     },
     {
-      title: "Video Development",
+      title: "Staffing Solutions",
+      description: "Flexible staffing services to provide skilled professionals for your content and project requirements.",
+      imageSrc: images.AssesmentImage, // Placeholder image, consider updating if a more specific one exists
+    },
+    {
+      title: "2D/3D Video Development",
       description: "High-quality educational and explainer Infographics, Motion Graphics, Whiteboard Animation, Video Lectures and 2D Animation.",
       imageSrc: images.VideoDevelopmentImage,
     },
     {
-      title: "Interactive e-learning Content",
+      title: "Interactive Module Development",
       description: "Engaging modules that promote active learning through Story based learning, Gamification, Scenario based learning and Branching simulations.",
       imageSrc: images.InteractiveImage,
     },
     {
-      title: "Translation and Localisation",
-      description: "Learning and self-improvement should be accessible to everyone, regardless of language. By offering courses in multiple languages, you can reach a wider audience and break down language barriers.",
-      imageSrc: images.TranslationServices,
-    },
-    {
-      title: "Assessment development",
-      description: "Customized evaluations to measure learning outcomes.",
-      imageSrc: images.AssesmentImage,
-    },
-    {
-      title: "AI-driver content creation",
+      title: "AI Content Solutions",
       description: "Innovative content powered by artificial intelligence to produce hundreds of videos in a short duration of time.",
       imageSrc: images.aiservicesimage,
-    },
-    {
-      title: "Voice over/Audio",
-      description: "Distinctive voices elevate content engagement, fostering deeper understanding and lasting retention.",
-      imageSrc: images.VoicoverImage,
     },
   ];
 
   return (
     <section
       id="services-section" // Added relative and min-h-screen, removed bg-gray-100
-      className="relative py-16 font-sans antialiased min-h-screen" // Added relative and min-h-screen, removed bg-gray-100
-      style={{
-        backgroundImage: `url('/assets/images/services-background.jpg')`,
-        backgroundSize: '65% 65%', // Changed to make the background image smaller
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
+      className="relative py-16 font-sans antialiased min-h-screen bg-black" // Set background to black
     >
       <div className="container mx-auto px-4 max-w-6xl">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-12 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center"> {/* Changed text to white */}
           Our services
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
@@ -124,15 +108,10 @@ export default function OurServices() {
             ))}
           </div>
 
+          {/* Display services 3, 4, 5 - these will naturally flow into the 3-column grid on large screens */}
           {services.slice(2, 5).map((service, index) => (
-            <ServiceCard key={index + 2} service={service} className="w-full md:w-full" />
+            <ServiceCard key={index + 2} service={service} className="w-full" />
           ))}
-
-          <div className="lg:col-span-3 flex flex-col md:flex-row justify-center gap-8">
-            {services.slice(5, 7).map((service, index) => (
-              <ServiceCard key={index + 5} service={service} className="w-full md:w-full lg:w-1/2" />
-            ))}
-          </div>
         </div>
       </div>
     </section>
