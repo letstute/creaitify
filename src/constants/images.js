@@ -42,4 +42,18 @@ export const images = {
   NimishaKoli:	"/assets/images/nimisha.png",
   VrushaliSatpute: "/assets/images/vrushali.png",	
   Vedant: "/assets/images/vedant.png",
+  HeroVideo: "/assets/images/hero-video.mp4",
+  clientOne : "/assets/images/Letstute (Client logo)-01.jpg",
+  clientTwo : "/assets/images/Letstute (Client logo)-02.jpg",
+  clientThree : "/assets/images/Letstute (Client logo)-03.jpg",
+  clientFour : "/assets/images/Letstute (Client logo)-04.jpg",
+  clientFive : "/assets/images/Letstute (Client logo)-05.jpg",
+  clientSix : "/assets/images/Letstute (Client logo)-06.jpg",
+  clientSeven : "/assets/images/Letstute (Client logo)-07.jpg",
+  clientEight : "/assets/images/Letstute (Client logo)-08.jpg",
+  clientNine : "/assets/images/Letstute (Client logo)-09.jpg",
+  clientTen : "/assets/images/Letstute (Client logo)-10.jpg",
+  clientEleven : "/assets/images/Letstute (Client logo)-11.jpg",
+  clientTwelve : "/assets/images/Letstute (Client logo)-12.jpg",
+
 };

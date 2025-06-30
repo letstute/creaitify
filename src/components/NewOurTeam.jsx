@@ -1,57 +1,92 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react'; // Import useRef
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react'; // Import useRef
 import { images } from '@/constants/images'; // Import images from constants
 
 // You can replace these with your own image URLs
 const slides = [
   {
     url: images.ShankarImage,
-    title: 'Shankar Vailaya',
-    name: 'Shankar Vailaya',
-    subtitle: 'Chairman & Director',
-    description: 'Shankar Vailaya brings extensive leadership and strategic vision to the team, guiding the company towards its long-term goals.'
-  },
-  {
-    url: images.AtulImage,
-    title: 'Atul Doshi',
-    name: 'Atul Doshi',
-    subtitle: 'Co-Founder & Director',
-    description: 'As a co-founder, Atul Doshi is instrumental in shaping the company\'s core values and driving its innovative approach to e-learning.'
+    name: 'Mr. Shankar Vailaya',
+    subtitle: 'Chairman',
+    description: 'With decades of leadership experience, Mr. Vailaya oversees strategic direction and governance, ensuring the organisation’s vision aligns with long-term growth and sustainable business practices.',
+    linkedin: 'https://www.linkedin.com/in/shankar-vailaya-b509701/'
   },
   {
     url: images.DilipImage,
-    title: 'Dilip Haria',
-    name: 'Dilip Haria',
+    name: 'Mr. Dilip Haria',
     subtitle: 'Director',
-    description: 'Dilip Haria provides invaluable guidance and expertise, contributing significantly to the company\'s operational excellence and growth.'
+    description: 'Mr. Haria brings operational excellence and compliance expertise, guiding executive decisions and playing a key role in business continuity and stakeholder management.',
+    linkedin: ''
+  },
+  {
+    url: images.AtulImage,
+    name: 'Mr. Atul Doshi',
+    subtitle: 'Co-founder & Director',
+    description: 'A visionary entrepreneur, Mr. Doshi drives innovation, strategic partnerships, and organisational development, ensuring seamless delivery of scalable content solutions for global clients.',
+    linkedin: 'https://www.linkedin.com/in/atul-doshi-b0a41992/'
   },
   {
     url: images.PravinImage,
-    title: 'Praveen Ambardar',
-    name: 'Praveen Ambardar',
-    subtitle: 'CEO',
-    description: 'Praveen Ambardar leads the team with a clear vision, fostering a culture of innovation and dedication to delivering top-tier content solutions.'
+    name: 'Mr. Praveen Ambardar',
+    subtitle: 'MD & CEO',
+    description: "As MD & CEO, Mr. Ambardar leads the organisation's overall growth strategy, client success, and operational execution, focusing on digital transformation and delivery excellence.",
+    linkedin: 'https://www.linkedin.com/in/praveen-ambardar-343a81255/'
   },
   {
     url: images.jyoti,
-    title: 'Jyoti Bharti',
-    name: 'Jyoti Bharti',
-    subtitle: 'Content Creation & Outsourcing Alliance Head',
-    description: 'Jyoti Bharti oversees all aspects of content creation and strategic outsourcing alliances, ensuring high-quality and efficient delivery.'
-  },
-    {
-    url: images.prachi,
-    title: 'Prachi Waje',
-    name: 'Prachi Waje',
-    subtitle: 'HR & Finance Head',
-    description: 'Prachi Waje manages human resources and financial operations, ensuring the smooth and sustainable growth of the organization.'
+    name: 'Ms. Jyoti Bharti',
+    subtitle: 'Lead - Content & Operations',
+    description: 'Ms. Bharti manages end-to-end content production and client delivery workflows, ensuring quality, timeliness, and process integrity across multiple domains and formats.',
+    linkedin: 'https://www.linkedin.com/in/jyoti-bharti-30a323129/'
   },
   {
-    url: 'https://via.placeholder.com/400x400?text=Team+Member+7',
-    title: 'Placeholder Image 7',
-    name: 'Team Member 7',
-    subtitle: 'Role 7', // Added subtitle field
-    description: 'Description for Team Member 7.'
+    url: images.prachi,
+    name: 'Ms. Prachi Waje',
+    subtitle: 'Lead - HR & Finance',
+    description: 'Ms. Waje oversees talent strategy, financial planning, and compliance, creating a performance-driven culture and ensuring fiscal discipline across operations.',
+    linkedin: 'https://www.linkedin.com/in/prachi-waje-445623b0/'
+  },
+  {
+    url: images.FarhanNek,
+    name: 'Mr. Farhan Nek',
+    subtitle: 'Lead - Business Development',
+    description: 'Mr. Nek spearheads client acquisition, account growth, and market expansion, forging long-term partnerships and identifying new revenue opportunities across geographies.',
+    linkedin: 'https://www.linkedin.com/in/farhan-nek-9aa16621b/'
+  },
+  {
+    url: images.AniketBhasin,
+    name: 'Mr. Aniket Bhasin',
+    subtitle: 'Lead - AI & Brand Communication',
+    description: 'Mr. Bhasin integrates AI-powered tools into content delivery while managing brand voice, visual identity, and marketing communications across platforms.',
+    linkedin: 'https://www.linkedin.com/in/aniket-bhasin-5928bb191/'
+  },
+  {
+    url: images.NimishaKoli,
+    name: 'Ms. Nimisha Koli',
+    subtitle: 'Lead - Projects',
+    description: 'Ms. Koli ensures timely and efficient project execution by overseeing cross-functional teams, setting milestones, and maintaining alignment with client expectations and KPIs.',
+    linkedin: 'https://www.linkedin.com/in/nimisha-koli-571029197/'
+  },
+  {
+    url: images.VrushaliSatpute,
+    name: 'Ms. Vrushali Satpute',
+    subtitle: 'Lead - eLearning Development',
+    description: 'Ms. Satpute leads instructional design and digital learning innovations, developing engaging, learner-centric modules aligned with global education standards.',
+    linkedin: 'https://www.linkedin.com/in/vrushali-satpute-40b1a2178/'
+  },
+  {
+    url: images.Vedant,
+    name: 'Mr. Vedant More',
+    subtitle: 'Lead - PostProduction',
+    description: 'Mr. More supervises postproduction processes, including video editing, motion graphics, and audio refinement, ensuring visual content meets branding and delivery specifications.',
+    linkedin: 'https://www.linkedin.com/in/vedant-more-222493211/'
+  },
+  {
+    url: 'https://placehold.co/400x400/D1D5DB/1F2937?text=Smita+Bhangale',
+    name: 'Ms. Smita Bhangale',
+    subtitle: 'Lead - Graphic Designing',
+    description: 'Ms. Bhangale manages creative design workflows, developing visually compelling graphics, templates, and brand assets that elevate client communications and courseware aesthetics.',
+    linkedin: ''
   }
 ];
 
@@ -138,58 +173,39 @@ export default function App() {
   }, [currentIndex, isMobileView, slidesAfterCurrent]); // Re-calculate when view or index changes
 
   // Effect to update text position when enlarged image position changes
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updatePosition = () => {
       if (isMobileView) {
         // For mobile, text is part of normal flow, not absolutely positioned by this logic.
-        // Ensure desktop-specific visibility is false.
-        setTextPosition(prev => ({ ...prev, visible: false }));
+        setTextPosition({ top: 0, left: 0, visible: false });
         return;
       }
-      if (enlargedImageRef.current && mainContainerRef.current) {
-        const imgRect = enlargedImageRef.current.getBoundingClientRect();
-        const containerRect = mainContainerRef.current.getBoundingClientRect();
 
-        const topRelativeToContainer = 24; // Shift down by 24px (1.5rem) on desktop
-        const leftRelativeToContainer = imgRect.right - containerRect.left + 20; // 20px margin
-        // Use functional update and check if position actually changed
-        setTextPosition(prevPosition => {
-          if (
-            prevPosition.top !== topRelativeToContainer ||
-            prevPosition.left !== leftRelativeToContainer ||
-            !prevPosition.visible
-          ) {
-            return {
-              top: topRelativeToContainer,
-              left: leftRelativeToContainer,
-              visible: true
-            };
-          }
-          return prevPosition; // No change, return previous state
-        });
-      } else {
-        setTextPosition(prevPosition => {
-          if (prevPosition.visible) { // Only update if it was visible
-            return { top: 0, left: 0, visible: false };
-          }
-          return prevPosition; // No change
+      // The previous calculation using `getBoundingClientRect` was fluctuating
+      // due to the timing of CSS transitions on the carousel slides. This led to
+      // inconsistent positioning when navigating forwards vs. backwards.
+      //
+      // By using a fixed pixel value that is known to be correct for the desktop
+      // layout, we ensure the text container's position is stable and uniform,
+      // providing a better user experience without visual jumps.
+      const leftPosition = 800;
+
+      if (enlargedImageRef.current && mainContainerRef.current) {
+        setTextPosition({
+          top: 24, // 1.5rem from the top
+          left: leftPosition,
+          visible: true,
         });
       }
     };
 
-    // Update position immediately on mount, slide change, or mobile view change
     updatePosition();
-
-    // Add listeners for immediate updates on resize/scroll
-    const handleResizeOrScroll = () => updatePosition();
-    window.addEventListener('resize', handleResizeOrScroll);
-    window.addEventListener('scroll', handleResizeOrScroll);
+    window.addEventListener('resize', updatePosition);
 
     return () => {
-      window.removeEventListener('resize', handleResizeOrScroll);
-      window.removeEventListener('scroll', handleResizeOrScroll);
+      window.removeEventListener('resize', updatePosition);
     };
-  }, [currentIndex, isMobileView, mainContainerRef, enlargedImageRef]); // Dependencies
+  }, [isMobileView, currentIndex]); // Reruns when view or current slide changes
 
   return (
     <div
@@ -201,9 +217,10 @@ export default function App() {
         <div
           className={`
             flex flex-col justify-start text-left p-4 rounded-lg bg-white text-gray-900
-            ${isMobileView
-              ? 'relative w-full max-w-md mx-auto mb-6 order-1'
-              : 'absolute max-w-md z-10 order-none transition-all duration-300 ease-linear' // Changed to ease-linear for text
+            ${
+              isMobileView
+                ? 'relative w-full max-w-md mx-auto mb-6 order-1'
+                : 'absolute max-w-2xl z-10 order-none transition-all duration-300 ease-linear' // Changed to ease-linear for text
             }
           `}
           style={
@@ -229,9 +246,11 @@ export default function App() {
           <p className="text-md text-gray-600 mb-4">{slides[currentIndex].subtitle}</p>
           <p className="text-lg mb-4">{slides[currentIndex].description}</p>
           {/* LinkedIn Icon */}
-          <a href="#" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600 transition-colors">
-            <LinkedInIcon className="w-8 h-8" />
-          </a>
+          {slides[currentIndex].linkedin && (
+            <a href={slides[currentIndex].linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600 transition-colors">
+              <LinkedInIcon className="w-8 h-8" />
+            </a>
+          )}
         </div>
       )}
 
