@@ -27,7 +27,7 @@ export default function ContactUs() {
     setIsSubmitting(true);
     setError('');
 
-    const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzpWmN24gOLibBJjnyKaD-6wX5EDsdxnokn5yPN7tk_10dzIqf_MyGtAvrlMucM-c6r/exec';
 
     try {
       const response = await fetch(SCRIPT_URL, {
