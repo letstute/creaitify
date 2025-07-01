@@ -35,7 +35,7 @@ export default function BrandsNow() {
           animation-play-state: paused;
         }
       `}</style>
-      <section className="py-16 bg-white font-sans antialiased">
+      <section id="our-work-section" className="py-16 bg-white font-sans antialiased">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-12 text-center uppercase tracking-wide">
             Empowered brands for over 11 years now

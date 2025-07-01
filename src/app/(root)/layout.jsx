@@ -5,14 +5,15 @@ import NumberSectionComponent from "@/components/NumberSectionComponent";
 import TestimonialSectionComponent from "@/components/TestimonialSectionComponent";
 import BrandsNow from "@/components/BrandsNow";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import VisionariesSectionComponent from "@/components/VisionariesSectionComponent";
-import OurTeam from "@/components/OurTeam";
+// import VisionariesSectionComponent from "@/components/VisionariesSectionComponent";
+// import OurTeam from "@/components/OurTeam";
 import FAQComponent from "@/components/FAQItem";
 import ContactUs from "@/components/ContactUs";
 import CallToActionSectionComponent from "@/components/CallToActionSectionComponent";
 import NewOurTeam from "@/components/NewOurTeam";
 import FooterComponent from "@/components/Footer";
 import NewHero from "@/components/NewHero";
+import OurProcessVideo from "@/components/OurProcessVideo";
 
 export default function Layout({ children }) {
   return (
@@ -23,6 +24,7 @@ export default function Layout({ children }) {
       <BrandsNow />
       <WhyChooseUs />
       <OurServices />
+      <OurProcessVideo />
       <NumberSectionComponent />
       <NewOurTeam />
       {/* <VisionariesSectionComponent /> */}

@@ -117,7 +117,8 @@ export default function WhyChooseUs() {
   const cardBaseScale = 0.85; // The smallest scale for the first card
 
   return (
-    <section className="relative py-16 font-sans antialiased min-h-screen"
+    <section
+      className="relative py-16 font-sans antialiased min-h-screen"
       style={{
         backgroundImage: `url(${images.WhyChooseUsBgImage})`,
         backgroundSize: 'cover',

@@ -82,7 +82,7 @@ const slides = [
     linkedin: 'https://www.linkedin.com/in/vedant-more-222493211/'
   },
   {
-    url: 'https://placehold.co/400x400/D1D5DB/1F2937?text=Smita+Bhangale',
+    url: images.SmitaTmember,
     name: 'Ms. Smita Bhangale',
     subtitle: 'Lead - Graphic Designing',
     description: 'Ms. Bhangale manages creative design workflows, developing visually compelling graphics, templates, and brand assets that elevate client communications and courseware aesthetics.',
@@ -209,6 +209,7 @@ export default function App() {
 
   return (
     <div
+      id="our-team-section"
       ref={mainContainerRef} // Assign ref to the main container
       className="max-w-[1600px] w-full m-auto py-8 px-4 relative group font-sans bg-white text-gray-900 flex flex-col justify-center items-center rounded-lg overflow-hidden">
 

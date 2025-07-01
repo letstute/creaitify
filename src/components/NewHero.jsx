@@ -1,3 +1,4 @@
+"use client";
 import { ArrowRight } from 'lucide-react';
 import { images } from '@/constants/images';
 
@@ -5,6 +6,13 @@ import { images } from '@/constants/images';
 // It is designed to be used in a Next.js application and styled with Tailwind CSS.
 
 export default function NewHero() {
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     // Main container for the hero section.
     // It's set to fill the screen height and uses a relative position
@@ -51,7 +59,10 @@ export default function NewHero() {
         {/* Call to Action Button Group */}
         {/* A flex container for the button and the arrow icon, creating the desired layout. */}
         <div className="flex items-center space-x-3">
-          <button className="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 ease-in-out shadow-lg hover:shadow-sky-400/50">
+          <button
+            onClick={() => scrollToSection('contact-us-section')}
+            className="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 ease-in-out shadow-lg hover:shadow-sky-400/50"
+          >
             CONTACT US
           </button>
           <div className="bg-sky-500 text-white p-3 rounded-full hover:bg-sky-600 transition-all duration-300 ease-in-out shadow-lg">

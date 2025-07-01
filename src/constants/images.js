@@ -55,5 +55,7 @@ export const images = {
   clientTen : "/assets/images/Letstute (Client logo)-10.jpg",
   clientEleven : "/assets/images/Letstute (Client logo)-11.jpg",
   clientTwelve : "/assets/images/Letstute (Client logo)-12.jpg",
-
+  SmitaTmember : "/assets/images/smita.jpeg",
+  OurProcessvideoDesk :"/assets/images/ourprocess-desktop.mp4",
+  OurProcessvideoMob : "/assets/images/ourprocess-mobile.mp4",
 };

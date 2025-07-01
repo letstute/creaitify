@@ -35,7 +35,8 @@ export default function ContactUs() {
         mode: 'cors', // Required for cross-origin requests to Apps Script
         cache: 'no-cache',
         headers: {
-          'Content-Type': 'application/json',
+          // Change content type to text/plain to avoid CORS preflight request issues with Google Apps Script
+          'Content-Type': 'text/plain;charset=utf-8',
         },
         redirect: 'follow',
         body: JSON.stringify(formData),
@@ -64,7 +65,10 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4 font-sans antialiased">
+    <div
+      id="contact-us-section"
+      className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4 font-sans antialiased"
+    >
       <div className="w-full max-w-6xl mx-auto py-12 md:flex md:space-x-8 bg-white rounded-xl shadow-xl p-8 md:p-12">
         {isSubmitted ? (
           <div className="text-center w-full py-10">
