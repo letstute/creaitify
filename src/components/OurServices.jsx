@@ -38,7 +38,7 @@ const ServiceCard = ({ service, className = '' }) => {
   return (
     <div
       ref={cardRef}
-      className={`bg-black rounded-2xl shadow-xl p-6 flex flex-col items-start text-left transition-transform duration-300 hover:scale-105 ${className}`} // Changed background to black
+      className={`bg-[#454545] rounded-2xl p-6 flex flex-col items-start text-left transition-transform duration-300 hover:scale-105 ${className}`} // Removed shadow-xl to blend with background
     >
       <div className="mb-4 w-full h-[232px] flex items-center justify-center bg-gray-700 rounded-[10px] overflow-hidden"> {/* Adjusted placeholder bg */}
         <img
@@ -94,7 +94,7 @@ export default function OurServices() {
   return (
     <section
       id="services-section" // Added relative and min-h-screen, removed bg-gray-100
-      className="relative py-16 font-sans antialiased min-h-screen bg-black" // Set background to black
+      className="relative py-16 font-sans antialiased min-h-screen bg-[#454545]" // Set background to dark gray
     >
       <div className="container mx-auto px-4 max-w-6xl">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center"> {/* Changed text to white */}

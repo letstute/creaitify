@@ -58,4 +58,13 @@ export const images = {
   SmitaTmember : "/assets/images/smita.jpeg",
   OurProcessvideoDesk :"/assets/images/ourprocess-desktop.mp4",
   OurProcessvideoMob : "/assets/images/ourprocess-mobile.mp4",
+  WhychooseUsBGVideo: "/assets/images/loop.gif",
+  OurProcessimage1: "/assets/images/1.png",
+  OurProcessimage2: "/assets/images/2.png",
+  OurProcessimage3: "/assets/images/3.png",
+  OurProcessimage4: "/assets/images/4.png",
+  OurProcessimage5: "/assets/images/5.png",
+  OurProcessimage6: "/assets/images/6.png",
+  OurProcessimage7: "/assets/images/7.png",
+  OurProcessimage8: "/assets/images/8.png",
 };
