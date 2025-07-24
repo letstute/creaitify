@@ -120,7 +120,9 @@ export default function WhyChooseUs() {
     <section
       className="relative py-16 font-sans antialiased min-h-screen"
       style={{
-        backgroundImage: `url(${images.WhyChooseUsBgImage})`,
+        // We apply the overlay using a linear-gradient on top of the background image.
+        // This is a clean way to add opacity without extra HTML elements.
+        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${images.WhychooseUsBGVideo})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
