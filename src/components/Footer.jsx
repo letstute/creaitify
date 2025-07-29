@@ -42,7 +42,7 @@ export default function FooterComponent() {
             <img
               src={images.logo}
               alt="Creaitify Logo"
-              className="h-10 w-20 md:h-12 md:w-24 rounded-full"
+              className="h-24 w-auto"
             />
           </div> {/* Logo/text spans all 3 columns */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left text-gray-600">

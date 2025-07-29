@@ -225,16 +225,18 @@ export default function NewOurTeam() {
                 <ChevronRightIcon onClick={nextSlide} className="w-8 h-8 cursor-pointer text-blue-600 hover:text-blue-800 transition-colors" />
               </span>
             </div>
-            <h3 className="text-3xl font-bold mb-2">{slides[currentIndex].name}</h3>
+            <div className="flex items-center gap-3 mb-2">
+              <h3 className="text-3xl font-bold">{slides[currentIndex].name}</h3>
+              {/* LinkedIn Icon */}
+              {slides[currentIndex].linkedin && (
+                <a href={slides[currentIndex].linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600 transition-colors">
+                  <LinkedInIcon className="w-7 h-7" />
+                </a>
+              )}
+            </div>
             {/* Subtitle placeholder - update slides array to include subtitle data */}
             <p className="text-md text-gray-600 mb-4">{slides[currentIndex].subtitle}</p>
             <p className="text-lg mb-4">{slides[currentIndex].description}</p>
-            {/* LinkedIn Icon */}
-            {slides[currentIndex].linkedin && (
-              <a href={slides[currentIndex].linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600 transition-colors">
-                <LinkedInIcon className="w-8 h-8" />
-              </a>
-            )}
           </div>
         )}
 

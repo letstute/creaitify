@@ -8,36 +8,36 @@ const CollaborationSection = () => {
   const services = [
     {
       number: 1,
-      title: "Team Setup",
-      description: "Assembling and training team as per your requirement along with dedicated project managers",
+      boldPart: "Assembling and training",
+      normalPart: " team as per your requirement along with dedicated project managers",
       icon: Users, // Lucide-react icon
       color: "border-orange-500" // Only border color here
     },
     {
       number: 2,
-      title: "Timely Delivery",
-      description: "Managing the delivery of content as per the schedule",
+      boldPart: "Managing the delivery",
+      normalPart: " of content as per the schedule",
       icon: Truck, // Lucide-react icon
       color: "border-amber-500"
     },
     {
       number: 3,
-      title: "Content Strategy",
-      description: "Strategic content planning",
+      boldPart: "Strategic content planning",
+      normalPart: "",
       icon: ClipboardList, // Lucide-react icon
       color: "border-green-500"
     },
     {
       number: 4,
-      title: "Quality Assurance",
-      description: "Quality checks at every corner",
+      boldPart: "Quality checks",
+      normalPart: " at every corner",
       icon: ClipboardCheck, // Lucide-react icon
       color: "border-blue-500"
     },
     {
       number: 5,
-      title: "Performance Reports",
-      description: "Weekly reports with performance tracking and analysis.",
+      boldPart: "Weekly reports",
+      normalPart: " with performance tracking and analysis.",
       icon: ScrollText, // Lucide-react icon
       color: "border-purple-500"
     },
@@ -68,7 +68,7 @@ const CollaborationSection = () => {
       <div className="max-w-7xl w-full bg-white rounded-xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
         {/* Left Section: Content Collaboration Text */}
         <div className="lg:w-1/2 p-8 sm:p-12 flex flex-col justify-center bg-white">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-blue-600 mb-6 leading-tight">
             Content Collaboration, Redefined
           </h1>
           <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
@@ -101,11 +101,9 @@ const CollaborationSection = () => {
                 <div className="flex-grow flex items-center">
                   {/* Container for title and description */}
                   <div className="flex-grow">
-                    <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">
-                      {service.title}
-                    </h3>
                     <p className="text-sm sm:text-base text-gray-600">
-                      {service.description}
+                      <span className="font-bold text-gray-700">{service.boldPart}</span>
+                      {service.normalPart}
                     </p>
                   </div>
                   {/* Icon positioned right next to the text content, with a small margin */}

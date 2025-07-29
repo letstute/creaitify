@@ -42,7 +42,7 @@ export default function HeaderComponent() {
           <img
             src={images.logo} // Use the logo from constants
             alt="Company Logo"
-            className="h-12 w-24 md:h-24 md:w-28 rounded-full mr-3 border-none"
+            className="h-[120px] w-auto mr-3 border-none"
           />
         </div>
 
