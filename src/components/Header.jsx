@@ -36,13 +36,13 @@ export default function HeaderComponent() {
   }, []);
 
   return (
-    <header className="bg-white shadow-md py-4 px-4 md:px-8 sticky top-0 z-[150] font-sans">
+    <header className="bg-white shadow-md h-20 md:h-20 flex items-center px-4 md:px-8 sticky top-0 z-[150] font-sans">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
           <img
             src={images.logo} // Use the logo from constants
             alt="Company Logo"
-            className="h-12 w-24 md:h-14 md:w-28 rounded-full mr-3 border-none"
+            className="h-12 w-24 md:h-24 md:w-28 rounded-full mr-3 border-none"
           />
         </div>
 
@@ -81,23 +81,18 @@ export default function HeaderComponent() {
         <nav className={`md:flex md:items-center ${isMenuOpen ? 'block absolute top-full left-0 w-full bg-white shadow-lg py-4 md:relative md:shadow-none md:py-0' : 'hidden'} md:space-x-6 lg:space-x-8`}>
           <ul className="flex flex-col md:flex-row md:space-x-6 lg:space-x-8 space-y-4 md:space-y-0 text-base md:text-lg px-4 md:px-0">
             <li>
-              <button onClick={() => scrollToSection('our-team-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto">
-                Who Are We
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToSection('services-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto">
+              <button onClick={() => scrollToSection('services-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto cursor-pointer">
                 Our Services
               </button>
             </li>
             <li>
-              <button onClick={() => scrollToSection('our-process-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto">
+              <button onClick={() => scrollToSection('our-process-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto cursor-pointer">
                 Our Process
               </button>
             </li>
             <li>
-              <button onClick={() => scrollToSection('our-work-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto">
-                Our Work
+              <button onClick={() => scrollToSection('our-team-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto cursor-pointer">
+                Our Team
               </button>
             </li>
           </ul>

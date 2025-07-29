@@ -77,7 +77,7 @@ export default function ContactUs() {
           </div>
         ) : (
           <div className="mb-10 md:mb-0 md:w-1/2 md:pr-8">
-            <h2 className="text-5xl font-bold text-gray-800 mb-4">Contact us</h2>
+            <h2 className="text-5xl font-bold text-gray-800 mb-4">Contact Us</h2>
             <p className="text-xl text-gray-600 mb-8">
               Want to get in touch for any requirements. Please fill up the form and we’ll get in touch with you shortly.
             </p>

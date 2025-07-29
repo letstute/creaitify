@@ -19,8 +19,8 @@ const CallToActionSectionComponent = () => {
       ></div>
 
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight mb-8">
-          Get ready to solve all your <br className="hidden md:block"/> content problems?
+        <h2 className="text-4xl md:text-3xl font-bold text-gray-800 mb-12 text-center uppercase tracking-wide">
+          GET READY TO SOLVE ALL YOUR <br className="hidden md:block"/> CONTENT PROBLEMS.
         </h2>
 
         <a

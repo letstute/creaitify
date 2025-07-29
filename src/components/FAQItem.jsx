@@ -5,7 +5,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
   return (
     <div className="bg-white rounded-xl shadow-md mb-4 overflow-hidden">
       <button
-        className="flex justify-between items-center w-full p-6 text-left text-gray-800 font-semibold text-lg focus:outline-none"
+        className="flex justify-between items-center w-full p-6 text-left text-gray-800 font-semibold text-lg focus:outline-none cursor-pointer"
         onClick={onClick}
         aria-expanded={isOpen}
       >
