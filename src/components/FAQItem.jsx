@@ -54,11 +54,11 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
 export default function FAQComponent() { // This component should ideally be in its own file, e.g., FAQComponent.jsx
   const faqData = [
     {
-      question: "What is LetsTute and why is it the best content outsourcing partner?",
-      answer: "LetsTute is an 11-year-old content creation company that offers end-to-end e-learning solutions. We provide scalable, cost-effective content that engages audiences and supports your business goals."
+      question: "What is Creaitify and why is it the best content outsourcing partner?",
+      answer: "Creaitify is an 11-year-old content creation company that offers end-to-end e-learning solutions. We provide scalable, cost-effective content that engages audiences and supports your business goals."
     },
     {
-      question: "How does LetsTute ensure timely project delivery?",
+      question: "How does Creaitify ensure timely project delivery?",
       answer: "We follow a rigorous project management methodology, including detailed planning, regular progress tracking, and dedicated project managers to ensure all projects are delivered on time and within budget."
     },
     {
@@ -66,7 +66,7 @@ export default function FAQComponent() { // This component should ideally be in 
       answer: "Absolutely! We work closely with our clients to understand their brand guidelines, tone of voice, and specific requirements to ensure all content is fully customized and on-brand."
     },
     {
-      question: "Does Lets Tute support multiple languages and formats?",
+      question: "Does Creaitify support multiple languages and formats?",
       answer: "Yes, we have a team of experienced linguists and content creators who can develop content in multiple languages and various formats, including videos, interactive modules, articles, and more."
     },
   ];

@@ -56,7 +56,7 @@ const ServiceCard = ({ service, className = '' }) => {
 export default function OurServices() {
   const services = [
     {
-      title: "End-to-end eLearning Solutions",
+      title: "End-to-End eLearning Solutions",
       description: "Comprehensive eLearning solutions tailored to your business needs, from content creation to delivery and management.",
       imageSrc: images.EndToEndService,
     },
@@ -100,7 +100,7 @@ export default function OurServices() {
     >
       <div className="container mx-auto px-2 max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
-          Our services
+          Our Services
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((service, index) => (
