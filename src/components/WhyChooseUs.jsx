@@ -9,8 +9,8 @@ const ReasonCard = ({
   imageSrc,
   index,
   bgColor,
-  totalCards, // New prop: total number of cards
-  baseScale,  // New prop: the scale of the first card (index 0)
+  totalCards,
+  baseScale,
 }) => {
   const siteStickyHeaderHeight = 80; // <<<< ------ ADJUST THIS VALUE to your site's sticky header height in pixels
   const partiallyVisibleHeight = 30; // Height of the card sliver that remains visible when "stuck"
@@ -23,6 +23,10 @@ const ReasonCard = ({
   }
   // Ensure scale is not less than baseScale and not more than 1.0, though formula should handle this.
   scaleValue = Math.min(1.0, Math.max(baseScale, scaleValue));
+
+  // Convert title to Title Case
+  const toTitleCase = (str) =>
+    str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase());
 
   return (
     <div
@@ -42,7 +46,9 @@ const ReasonCard = ({
         {/* Title Bar section (retains h-16 for sticky offset consistency) */}
         <div className={`flex justify-start px-8 md:px-10 pt-5 md:pt-6 pb-2`}> {/* Increased top padding: pt-4->pt-5, md:pt-5->md:pt-6 */}
           {/* Title aligned left */}
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-800 text-left" title={title}>{title}</h3> {/* Increased size, removed truncate */}
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-800 text-left" title={title}>
+            {toTitleCase(title)}
+          </h3> {/* Increased size, removed truncate */}
         </div>
 
         {/* Description section */}
@@ -116,22 +122,31 @@ export default function WhyChooseUs() {
 
   const cardBaseScale = 0.85; // The smallest scale for the first card
 
+  // Convert section title to Title Case
+  const sectionTitle = "Why choose us?";
+  const toTitleCase = (str) =>
+    str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase());
+
   return (
     <section
       className="relative py-16 font-sans antialiased min-h-screen"
       style={{
-        // We apply the overlay using a linear-gradient on top of the background image.
-        // This is a clean way to add opacity without extra HTML elements.
         backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${images.WhychooseUsBGVideo})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed',
+        backgroundAttachment: 'scroll',
+        // Remove scrollBehavior and transition for best scroll performance
+        willChange: 'background-position',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)',
       }}
     >
       <div className="container mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-12 md:mb-16 text-center drop-shadow-lg">
-          Why choose us?
+          {toTitleCase(sectionTitle)}
         </h2>
         {/*
           The paddingBottom provides the necessary scroll space to ensure the content of the final sticky card

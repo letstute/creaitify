@@ -59,34 +59,6 @@ const slides = [
     subtitle: 'Lead - AI & Brand Communication',
     description: 'Mr. Bhasin integrates AI-powered tools into content delivery while managing brand voice, visual identity, and marketing communications across platforms.',
     linkedin: 'https://www.linkedin.com/in/aniket-bhasin-5928bb191/'
-  },
-  {
-    url: images.NimishaKoli,
-    name: 'Ms. Nimisha Koli',
-    subtitle: 'Lead - Projects',
-    description: 'Ms. Koli ensures timely and efficient project execution by overseeing cross-functional teams, setting milestones, and maintaining alignment with client expectations and KPIs.',
-    linkedin: 'https://www.linkedin.com/in/nimisha-koli-571029197/'
-  },
-  {
-    url: images.VrushaliSatpute,
-    name: 'Ms. Vrushali Satpute',
-    subtitle: 'Lead - eLearning Development',
-    description: 'Ms. Satpute leads instructional design and digital learning innovations, developing engaging, learner-centric modules aligned with global education standards.',
-    linkedin: 'https://www.linkedin.com/in/vrushali-satpute-40b1a2178/'
-  },
-  {
-    url: images.Vedant,
-    name: 'Mr. Vedant More',
-    subtitle: 'Lead - PostProduction',
-    description: 'Mr. More supervises postproduction processes, including video editing, motion graphics, and audio refinement, ensuring visual content meets branding and delivery specifications.',
-    linkedin: 'https://www.linkedin.com/in/vedant-more-222493211/'
-  },
-  {
-    url: images.SmitaTmember,
-    name: 'Ms. Smita Bhangale',
-    subtitle: 'Lead - Graphic Designing',
-    description: 'Ms. Bhangale manages creative design workflows, developing visually compelling graphics, templates, and brand assets that elevate client communications and courseware aesthetics.',
-    linkedin: ''
   }
 ];
 
@@ -109,7 +81,7 @@ const LinkedInIcon = (props) => (
   </svg>
 );
 
-export default function App() {
+export default function NewOurTeam() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const enlargedImageRef = useRef(null); // Ref for the enlarged image
   const mainContainerRef = useRef(null); // Ref for the main container
@@ -133,6 +105,13 @@ export default function App() {
   // Function to go to a specific slide using the dots or by clicking an image
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
+  };
+
+  // Accessibility handler for keyboard navigation
+  const handleKeyDown = (event, slideIndex) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      goToSlide(slideIndex);
+    }
   };
 
   // Auto-play functionality
@@ -208,58 +187,62 @@ export default function App() {
   }, [isMobileView, currentIndex]); // Reruns when view or current slide changes
 
   return (
-    <div
-      id="our-team-section"
-      ref={mainContainerRef} // Assign ref to the main container
-      className="max-w-[1600px] w-full m-auto py-8 px-4 relative group font-sans bg-white text-gray-900 flex flex-col justify-center items-center rounded-lg overflow-hidden">
-
-      {/* Text container: Behaves differently on mobile vs desktop */}
-      {slides[currentIndex] && (
-        <div
-          className={`
-            flex flex-col justify-start text-left p-4 rounded-lg bg-white text-gray-900
-            ${
-              isMobileView
+    <>
+      <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-12 text-center">
+        Meet Our Team
+      </h2>
+      <div
+        id="our-team-section"
+        ref={mainContainerRef}
+        className="max-w-[1600px] w-full m-auto py-16 px-4 relative group font-sans bg-white text-gray-900 flex flex-col justify-center items-center rounded-lg overflow-hidden"
+      >
+        {/* Text container: Behaves differently on mobile vs desktop */}
+        {slides[currentIndex] && (
+          <div
+            className={`
+              flex flex-col justify-start text-left p-4 rounded-lg bg-white text-gray-900
+              ${isMobileView
                 ? 'relative w-full max-w-md mx-auto mb-6 order-1'
-                : 'absolute max-w-2xl z-10 order-none transition-all duration-300 ease-linear' // Changed to ease-linear for text
+                : 'absolute max-w-2xl z-10 order-none transition-all duration-300 ease-linear mt-8'
+              }
+            `}
+            style={
+              isMobileView
+                ? {}
+                : {
+                    top: textPosition.top,
+                    left: textPosition.left,
+                    visibility: textPosition.visible ? 'visible' : 'hidden',
+                    maxHeight: '320px', // Reduce max height to avoid overlap
+                    overflowY: 'auto',  // Allow scroll if content exceeds
+                  }
             }
-          `}
-          style={
-            isMobileView
-              ? {}
-              : { top: textPosition.top, left: textPosition.left, visibility: textPosition.visible ? 'visible' : 'hidden' }
-          }
-        >
-          {/* Container for Counter and Arrows - now above the title */}
-          <div className="flex items-center mb-3 w-full"> {/* Removed justify-between */}
-            {/* Slide Counter */}
-            <span className="text-lg font-bold text-gray-800 mr-3"> {/* Increased size and weight, darker color */}
-              #{currentIndex + 1}/{slides.length}
-            </span>
-            {/* Navigation Arrows */}
-            <span className="flex items-center space-x-2">
-              <ChevronLeftIcon onClick={prevSlide} className="w-8 h-8 cursor-pointer text-blue-600 hover:text-blue-800 transition-colors" />
-              <ChevronRightIcon onClick={nextSlide} className="w-8 h-8 cursor-pointer text-blue-600 hover:text-blue-800 transition-colors" />
-            </span>
+          >
+            {/* Container for Arrows - shifted left, counter removed */}
+            <div className="flex items-center mb-3 w-full">
+              <span className="flex items-center space-x-2">
+                <ChevronLeftIcon onClick={prevSlide} className="w-8 h-8 cursor-pointer text-blue-600 hover:text-blue-800 transition-colors" />
+                <ChevronRightIcon onClick={nextSlide} className="w-8 h-8 cursor-pointer text-blue-600 hover:text-blue-800 transition-colors" />
+              </span>
+            </div>
+            <h3 className="text-3xl font-bold mb-2">{slides[currentIndex].name}</h3>
+            {/* Subtitle placeholder - update slides array to include subtitle data */}
+            <p className="text-md text-gray-600 mb-4">{slides[currentIndex].subtitle}</p>
+            <p className="text-lg mb-4">{slides[currentIndex].description}</p>
+            {/* LinkedIn Icon */}
+            {slides[currentIndex].linkedin && (
+              <a href={slides[currentIndex].linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600 transition-colors">
+                <LinkedInIcon className="w-8 h-8" />
+              </a>
+            )}
           </div>
-          <h3 className="text-3xl font-bold mb-2">{slides[currentIndex].name}</h3>
-          {/* Subtitle placeholder - update slides array to include subtitle data */}
-          <p className="text-md text-gray-600 mb-4">{slides[currentIndex].subtitle}</p>
-          <p className="text-lg mb-4">{slides[currentIndex].description}</p>
-          {/* LinkedIn Icon */}
-          {slides[currentIndex].linkedin && (
-            <a href={slides[currentIndex].linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600 transition-colors">
-              <LinkedInIcon className="w-8 h-8" />
-            </a>
-          )}
-        </div>
-      )}
+        )}
 
-      {/* Image Slider Container - all images are here, including the enlarged one */}
-      <div className={`
-        w-full flex justify-center items-end py-4 relative
-        ${isMobileView ? 'order-2 h-[320px]' : 'order-none h-[440px]'} // Added fixed height, removed flex-grow
-      `}>
+        {/* Image Slider Container - all images are here, including the enlarged one */}
+        <div className={`
+          w-full flex justify-center items-end py-4 relative
+          ${isMobileView ? 'order-2 h-[320px]' : 'order-none h-[440px]'} // Added fixed height, removed flex-grow
+        `}>
           {visibleSlides.map((slide, index) => {
               // The main slide is the one at the `slidesBeforeCurrent` position in our visible array.
               const isEnlargedSlide = index === slidesBeforeCurrent;
@@ -283,11 +266,16 @@ export default function App() {
                           border: isEnlargedSlide ? '4px solid #3b82f6' : '4px solid transparent', // Highlight for enlarged
                           objectFit: 'cover'
                       }}
+                      role="button"
+                      tabIndex="0"
                       onClick={() => goToSlide(slide.originalIndex)}
+                      onKeyDown={(e) => handleKeyDown(e, slide.originalIndex)}
+                      aria-label={`View details for ${slide.name}`}
                   ></div>
               );
           })}
         </div>
-    </div>
+      </div>
+    </>
   );
 }

@@ -14,6 +14,7 @@ import NewOurTeam from "@/components/NewOurTeam";
 import FooterComponent from "@/components/Footer";
 import NewHero from "@/components/NewHero";
 import OurProcessVideo from "@/components/OurProcessVideo";
+import CollaborationSection from "@/components/Collaboration";
 
 export default function Layout({ children }) {
   return (
@@ -25,6 +26,7 @@ export default function Layout({ children }) {
       <WhyChooseUs />
       <OurServices />
       <OurProcessVideo />
+      <CollaborationSection />
       <NumberSectionComponent />
       <NewOurTeam />
       {/* <VisionariesSectionComponent /> */}

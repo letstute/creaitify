@@ -67,4 +67,10 @@ export const images = {
   OurProcessimage6: "/assets/images/6.png",
   OurProcessimage7: "/assets/images/7.png",
   OurProcessimage8: "/assets/images/8.png",
+  EndToEndService: "/assets/images/end-to-end-elearning.jpg",
+  InteractiveModuleService: "/assets/images/interactive-elearning-module.jpg",
+  AnimationService: "/assets/images/2d-3d-animations.jpg",
+  AIContentService: "/assets/images/ai-content-solutions.jpg",
+  InstructionalGraphicService: "/assets/images/instructional-graphic-design.jpg",
+  ShootPostProductionService: "/assets/images/shoot-postproduction.jpg",
 };

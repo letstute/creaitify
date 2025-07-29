@@ -19,14 +19,14 @@ export default function BrandsNow() {
   ];
 
   // Duplicate logos for a seamless loop
-  const duplicatedLogos = [...clientLogos, ...clientLogos];
+  const duplicatedLogos = [...clientLogos, ...clientLogos, ...clientLogos];
 
   return (
     <>
       <style jsx>{`
         @keyframes infinite-scroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(-100%); }
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.3333%); }
         }
         .animate-infinite-scroll {
           animation: infinite-scroll 40s linear infinite;
@@ -37,7 +37,7 @@ export default function BrandsNow() {
       `}</style>
       <section id="our-work-section" className="py-16 bg-white font-sans antialiased">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-12 text-center uppercase tracking-wide">
+          <h2 className="text-4xl md:text-3xl font-bold text-gray-800 mb-12 text-center uppercase tracking-wide">
             Empowered brands for over 11 years now
           </h2>
           <div

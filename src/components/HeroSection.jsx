@@ -87,29 +87,38 @@ export default function HeroSection() {
     <section
       className="relative py-16 md:py-20 font-sans antialiased flex flex-col items-center justify-center min-h-screen"
     >
-      <style jsx>{`
-        .desktop-layout-block1, .desktop-layout-block2 {
-          display: none;
-        }
-
-        @media (min-width: 1200px) {
-          .desktop-layout-block1 { display: flex; }
-          .desktop-layout-block2 { display: flex; }
-          .mobile-stacked-layout {
-            display: none;
-          }
-        }
-      `}</style>
-
+      {/* YouTube Background Video */}
       <div
-        className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url('/assets/images/hero-background.jpg')`,
-          backgroundSize: '65% auto',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          zIndex: 0,
+          pointerEvents: 'none',
+          overflow: 'hidden',
         }}
-      ></div>
+      >
+        <iframe
+          src="https://www.youtube.com/embed/V4UI_hJVC_4?autoplay=1&mute=1&loop=1&playlist=V4UI_hJVC_4&controls=0&showinfo=0&modestbranding=1&rel=0&vq=hd2160"
+          title="Background Video"
+          frameBorder="0"
+          allow="autoplay; encrypted-media"
+          allowFullScreen={false}
+          style={{
+            width: '100vw',
+            height: '100vh',
+            minWidth: '100%',
+            minHeight: '100%',
+            objectFit: 'cover',
+            pointerEvents: 'none',
+            border: 'none',
+            aspectRatio: '16/9',
+            display: 'block',
+          }}
+        />
+      </div>
 
       <div className="relative z-10 container mx-auto px-4 max-w-6xl text-center mb-12">
         <h1 className="text-5xl md:text-6xl font-bold text-black drop-shadow-lg leading-none mb-4">

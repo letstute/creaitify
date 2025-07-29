@@ -1,21 +1,20 @@
 "use client";
-import { images } from '@/constants/images'; // Import images
+import { images } from '@/constants/images';
 import React, { useState } from 'react';
 
 export default function OurTeam() {
   const teamData = [
-    { name: 'Farhan Nek', designation: 'Chief Business Officer', image: images.FarhanNek },
-    { name: 'Aniket Bhasin', designation: 'Chief AI and Brand Communications', image: images.AniketBhasin },
-    // Assuming Shruti Mishra's image is not in constants, using placeholder
-    { name: 'Nimisha Koli', designation: 'Project Team Lead', image: images.NimishaKoli },
-    { name: 'Vrushali Satpute', designation: 'Project Manager', image: images.VrushaliSatpute },
-    // Assuming Tanisha's image is not in constants, using placeholder
-    { name: 'Tanisha', designation: 'Project Manager', image: 'https://placehold.co/600x400/D1D5DB/1F2937?text=Tanisha' },
-    { name: 'Vedant', designation: 'Production Team Lead', image: images.Vedant },
+    { name: 'Mr. Shankar Vailaya', designation: 'Chairman', image: images.ShankarImage },
+    { name: 'Mr. Dilip Haria', designation: 'Director', image: images.DilipImage },
+    { name: 'Mr. Atul Doshi', designation: 'Co-founder & Director', image: images.AtulImage },
+    { name: 'Mr. Praveen Ambardar', designation: 'MD & CEO', image: images.PravinImage },
+    { name: 'Ms. Jyoti Bharti', designation: 'Lead - Content & Operations', image: images.jyoti },
+    { name: 'Ms. Prachi Waje', designation: 'Lead - HR & Finance', image: images.prachi },
+    { name: 'Mr. Farhan Nek', designation: 'Lead - Business Development', image: images.FarhanNek },
+    { name: 'Mr. Aniket Bhasin', designation: 'Lead - AI & Brand Communication', image: images.AniketBhasin },
   ];
 
   const [activeIndex, setActiveIndex] = useState(Math.floor(teamData.length / 2));
-
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
@@ -87,15 +86,15 @@ export default function OurTeam() {
       </h1>
 
       <div
-        className="relative w-full max-w-6xl overflow-hidden touch-action-pan-y"
-        onMouseDown={handleMouseDown} // Attach mouse down listener to the container
+        className="relative w-full max-w-6xl overflow-hidden touch-action-pan-y mb-16"
+        onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleDragEnd}
         onMouseLeave={handleDragEnd}
         onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}  // Attach touch move listener
-        onTouchEnd={handleDragEnd}    // Attach touch end listener
-        onTouchCancel={handleDragEnd}  // Attach touch cancel listener (for interrupted touches)
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleDragEnd}
+        onTouchCancel={handleDragEnd}
         style={{ cursor: isDragging ? 'grabbing' : 'grab', userSelect: 'none' }}
       >
         <div className="relative flex items-center justify-center h-[400px] md:h-[500px]">
@@ -108,16 +107,18 @@ export default function OurTeam() {
 
             return (
               <div
-                key={index} // Removed pointer-events-none to allow text selection if needed, though interaction is on parent
-                className="absolute transition-all duration-500 ease-in-out transform" // Removed pointer-events-none to allow text selection if needed, though interaction is on parent
+                key={index}
+                className="absolute transition-all duration-500 ease-in-out transform"
                 style={{
                   left: `${50 + offset * 25}%`,
                   transform: `translateX(-50%) scale(${scale})`,
                   zIndex: zIndex,
                   opacity: opacity,
                   filter: `blur(${blur}px)`,
-                  width: '80%',
-                  maxWidth: '500px',
+                  width: '350px',
+                  height: '400px',
+                  maxWidth: '350px',
+                  maxHeight: '400px',
                 }}
               >
                 <div className="relative overflow-hidden w-full h-full rounded-xl">
@@ -125,9 +126,10 @@ export default function OurTeam() {
                     src={member.image}
                     alt={member.name || `Team member ${index + 1}`}
                     className="w-full h-full object-cover"
+                    style={{ width: '350px', height: '400px', objectFit: 'cover' }}
                     onError={(e) => {
-                      e.target.onerror = null; // Prevent infinite loop
-                      e.target.src = `https://placehold.co/600x400/cccccc/333333?text=Image+Error`;
+                      e.target.onerror = null;
+                      e.target.src = `https://placehold.co/350x400/cccccc/333333?text=Image+Error`;
                     }}
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-1 md:p-2 bg-gradient-to-t from-black via-black/70 to-transparent text-white">
@@ -154,7 +156,7 @@ export default function OurTeam() {
         </div>
       </div>
 
-      <div className="mt-12 text-center">
+      <div className="mt-20 text-center">
         <a
           href="https://www.letstute.com/s/pages/letstute-team"
           target="_blank"
