@@ -12,8 +12,8 @@ const CallIcon = (props) => (
 export default function HeaderComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const scrollToSection = (id) => { // Special case for scrolling to top
-    if (id === 'home-section' || id === 'top') { // Special case for scrolling to top
+  const scrollToSection = (id) => {
+    if (id === 'home-section' || id === 'top') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setIsMenuOpen(false);
     } else {
@@ -27,7 +27,7 @@ export default function HeaderComponent() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) { // md breakpoint in Tailwind
+      if (window.innerWidth >= 768) {
         setIsMenuOpen(false);
       }
     };
@@ -38,14 +38,16 @@ export default function HeaderComponent() {
   return (
     <header className="bg-white shadow-md h-20 md:h-20 flex items-center px-4 md:px-8 sticky top-0 z-[150] font-sans">
       <div className="container mx-auto flex items-center justify-between">
+        {/* Logo on the left */}
         <div className="flex items-center">
           <img
-            src={images.logo} // Use the logo from constants
+            src={images.logo}
             alt="Company Logo"
             className="h-[120px] w-auto mr-3 border-none"
           />
         </div>
 
+        {/* Hamburger button for mobile */}
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -78,47 +80,52 @@ export default function HeaderComponent() {
           </button>
         </div>
 
-        <nav className={`md:flex md:items-center ${isMenuOpen ? 'block absolute top-full left-0 w-full bg-white shadow-lg py-4 md:relative md:shadow-none md:py-0' : 'hidden'} md:space-x-6 lg:space-x-8`}>
-          <ul className="flex flex-col md:flex-row md:space-x-6 lg:space-x-8 space-y-4 md:space-y-0 text-base md:text-lg px-4 md:px-0">
-            <li>
-              <button onClick={() => scrollToSection('services-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto cursor-pointer">
-                Our Services
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToSection('our-process-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto cursor-pointer">
-                Our Process
-              </button>
-            </li>
-            <li>
-              <button onClick={() => scrollToSection('our-team-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto cursor-pointer">
-                Our Team
-              </button>
-            </li>
-          </ul>
-          <div className="mt-4 md:hidden px-4 pb-2">
+        {/* ========== Navigation and Call Button ALIGNED RIGHT ========== */}
+        <div className="flex items-center ml-auto">
+          <nav className={`md:flex md:items-center ${isMenuOpen ? 'block absolute top-full left-0 w-full bg-white shadow-lg py-4 md:relative md:shadow-none md:py-0' : 'hidden'} md:space-x-6 lg:space-x-8`}>
+            <ul className="flex flex-col md:flex-row md:space-x-6 lg:space-x-8 space-y-4 md:space-y-0 text-base md:text-lg px-4 md:px-0">
+              <li>
+                <button onClick={() => scrollToSection('services-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto cursor-pointer">
+                  Our Services
+                </button>
+              </li>
+              <li>
+                <button onClick={() => scrollToSection('our-process-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto cursor-pointer">
+                  Our Process
+                </button>
+              </li>
+              <li>
+                <button onClick={() => scrollToSection('our-team-section')} className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 w-full text-left md:w-auto cursor-pointer">
+                  Our Team
+                </button>
+              </li>
+            </ul>
+            {/* Mobile-only "Book a call" button */}
+            <div className="mt-4 md:hidden px-4 pb-2">
+              <a
+                href="https://calendly.com/aniket-bhasin/letstute-introduction-call"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-lg"
+              >
+                Book a call
+              </a>
+            </div>
+          </nav>
+          {/* Desktop-only "Book a call" button */}
+          <div className="hidden md:flex items-center">
             <a
               href="https://calendly.com/aniket-bhasin/letstute-introduction-call"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-full transition-colors duration-300 shadow-lg flex items-center text-sm"
             >
+              <CallIcon className="w-5 h-5 mr-2" />
               Book a call
             </a>
           </div>
-        </nav>
-
-        <div className="hidden md:flex items-center">
-          <a
-            href="https://calendly.com/aniket-bhasin/letstute-introduction-call"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-full transition-colors duration-300 shadow-lg flex items-center text-sm"
-          > {/* Replaced img with CallIcon, adjusted size slightly */}
-            <CallIcon className="w-5 h-5 mr-2" /> {/* Replaced img with CallIcon, adjusted size slightly */}
-            Book a call
-          </a>
         </div>
+        {/* ============================================================== */}
       </div>
     </header>
   );
