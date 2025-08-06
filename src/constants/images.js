@@ -58,7 +58,7 @@ export const images = {
   SmitaTmember : "/assets/images/smita.jpeg",
   OurProcessvideoDesk :"/assets/images/ourprocess-desktop.mp4",
   OurProcessvideoMob : "/assets/images/ourprocess-mobile.mp4",
-  WhychooseUsBGVideo: "/assets/images/loop.gif",
+  WhychooseUsBGVideo: "/assets/images/loop.mp4",
   OurProcessimage1: "/assets/images/1.png",
   OurProcessimage2: "/assets/images/2.png",
   OurProcessimage3: "/assets/images/3.png",
